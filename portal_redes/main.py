@@ -19,5 +19,5 @@ def serve_static(path):
     return send_from_directory(STATIC_DIR, path)
 
 def hello_world(request):
-    with app.test_request_context(request.path):
+    with app.test_request_context(request.path, method=request.method, data=request.data, headers=request.headers):
         return app.full_dispatch_request()
